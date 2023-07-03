@@ -7,17 +7,18 @@ import './App.css'
 function TestButtons (){
   const [count, setCount] = useState(0);
   return (
-    count < 2? 
-        <button onClick={() => setCount((count) => count + 1)}>
+    <button onClick={() => setCount((count) => count + 1)}>
       count is {count}
-    </button> : 
-    <div>2가 넘었어요;</div>
+    </button>
   )
 }
 
 function App() {
   useEffect(() => {
    alert("여기 왔어요?")
+   return () => {
+    alert("나갈꺼야?")
+   }
   });
   
   return (
