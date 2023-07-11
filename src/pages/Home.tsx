@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import Navigator from '../components/Navigator';
 import '../App.css'
 import {
   RecoilRoot,
@@ -20,7 +20,7 @@ const charCountState = selector({
     const text = get(textState);
 
     return text.length;
-  },
+  }
 });
 function CharacterCount() {
   const count = useRecoilValue(charCountState);
@@ -62,15 +62,13 @@ function TextInput() {
 function App() {
   return (
     <>
+      <Navigator /> 
       <div>
         리액트로 된 테스트 페이지 
       </div>
       <h1>Vite + React</h1>
       <div className="card">
         <TestButtons></TestButtons>
-        <p>
-          <a href="/News">여긴 뉴스로 가는 곳</a>
-        </p>
       </div>
       <div>
         <RecoilRoot>

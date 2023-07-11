@@ -4,6 +4,8 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import News from "./pages/News";
+import Tag from "./pages/Tag";
+import GuestBook from "./pages/GuestBook";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +15,14 @@ const router = createBrowserRouter([
   {
     path: "/news",
     element: <News />,
+  },
+  {
+    path: "/tag",
+    element: <Tag />,
+  },
+  {
+    path: "/guestBook?",
+    element: <GuestBook />,
   },
 ]);
 
