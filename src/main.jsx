@@ -5,9 +5,16 @@ import router from './router'
 import {
   RouterProvider,
 } from "react-router-dom";
+import Navigator from './components/Navigator'
+import Footer from './components/Footer'
 
+const height = {
+  height: '100dv'
+}
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Navigator></Navigator>
+    <RouterProvider router={router} style={height} />
+    <Footer></Footer>
   </React.StrictMode>
 );
