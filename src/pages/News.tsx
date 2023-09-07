@@ -6,7 +6,7 @@ const News = () => {
   const onClick = async () => {
     try {
       const response = await axios.get(
-        'https://openapi.naver.com/v1/search/news.json', {
+        '/api/v1/search/news.json?query=%EC%A3%BC%EC%8B%9D', {
           headers : {
             "X-Naver-Client-Id": '7lVgaBo6gVdzFAcWzhrA',
             "X-Naver-Client-Secret": 'ai8LljpS2K',
@@ -21,7 +21,8 @@ const News = () => {
   return (
     <div>
       <div>
-        <button onClick={onClick}>불러오기</button>
+        <input type="text" placeholder='검색어를 입력해주세요.'/>
+        <button onClick={onClick}>검색</button>
       </div>
       {data && <textarea rows={7} value={JSON.stringify(data, null, 2)} />}
     </div>
