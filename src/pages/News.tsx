@@ -6,7 +6,7 @@ const News = () => {
   const onClick = async () => {
     try {
       const response = await axios.get(
-        '/api/v1/search/news.json', {
+        'https://openapi.naver.com/v1/search/news.json', {
           headers : {
             "X-Naver-Client-Id": '7lVgaBo6gVdzFAcWzhrA',
             "X-Naver-Client-Secret": 'ai8LljpS2K',
