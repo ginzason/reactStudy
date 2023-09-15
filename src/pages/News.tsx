@@ -1,30 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import NewsList from '../components/NewsList';
 
 const News = () => {
+  const [searchQuery, setSearchQuery] = useState('인기');
   const [data, setData] = useState(null);
-  const onClick = async () => {
+  const [loading, setLoading] = useState(false);
+  console.log(searchQuery)
+  const fetchData = async () => {
+    if (!searchQuery) return;
+
+    setLoading(true);
     try {
       const response = await axios.get(
-        '/api/v1/search/news.json?query=%EC%A3%BC%EC%8B%9D', {
-          headers : {
-            "X-Naver-Client-Id": '7lVgaBo6gVdzFAcWzhrA',
-            "X-Naver-Client-Secret": 'ai8LljpS2K',
-          }
+        `/api/v1/search/news.json?query=${encodeURIComponent(searchQuery)}`, {
+          headers: {
+            'X-Naver-Client-Id': '7lVgaBo6gVdzFAcWzhrA',
+            'X-Naver-Client-Secret': 'ai8LljpS2K',
+          },
         }
       );
-      setData(response.data);
+      console.log("통신")
+      console.log(response.data.items)
+      setData(response.data.items);
     } catch (e) {
       console.log(e);
     }
+    setLoading(false);
   };
+
+  useEffect(() => {
+    fetchData(); // 초기 렌더링 시에도 데이터를 가져오도록 호출
+  }, [searchQuery]);
+
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearchClick = () => {
+    fetchData(); // 검색 버튼 클릭 시 데이터를 가져오도록 호출
+  };
+
   return (
     <div>
       <div>
-        <input type="text" placeholder='검색어를 입력해주세요.'/>
-        <button onClick={onClick}>검색</button>
+        <input
+          type="text"
+          placeholder="검색어를 입력해주세요."
+          value={searchQuery}
+          onChange={handleInputChange}
+        />
+        <button onClick={handleSearchClick}>검색</button>
       </div>
-      {data && <textarea rows={7} value={JSON.stringify(data, null, 2)} />}
+      {loading ? (
+        <div>뉴스를 불러오는 중...</div>
+      ) : (
+        <NewsList articles={data} />
+      )}
     </div>
   );
 };
