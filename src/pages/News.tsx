@@ -1,6 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NewsList from '../components/NewsList';
+import styled from 'styled-components';
+
+const NewsWrap = styled.div`
+  padding:20px;
+  > div {
+    margin-bottom:20px;
+    input {
+      width:calc(100% - 90px);
+      margin-right:10px;
+      height:40px;
+    }
+    button {
+      background:#333;
+      border:1px solid #fff;
+    }
+  }
+`;
 
 const News = () => {
   const [searchQuery, setSearchQuery] = useState('인기');
@@ -20,8 +37,6 @@ const News = () => {
           },
         }
       );
-      console.log("통신")
-      console.log(response.data.items)
       setData(response.data.items);
     } catch (e) {
       console.log(e);
@@ -42,7 +57,7 @@ const News = () => {
   };
 
   return (
-    <div>
+    <NewsWrap>
       <div>
         <input
           type="text"
@@ -57,7 +72,7 @@ const News = () => {
       ) : (
         <NewsList articles={data} />
       )}
-    </div>
+    </NewsWrap>
   );
 };
 
