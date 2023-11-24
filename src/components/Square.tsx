@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-
-export default class Square extends Component {
+import '../assets/css/square.scss'
+interface SquareProps {
+  value: number;
+}
+export default class Square extends Component<SquareProps> {
   render() {
     return (
-      <div>
-        <button>
-          버튼이빈다.
-        </button>
-      </div>
+      <button className='square'>
+        { this.props.value }
+      </button>
     )
   }
 }
