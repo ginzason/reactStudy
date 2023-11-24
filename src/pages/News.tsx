@@ -23,10 +23,9 @@ const News = () => {
   const [searchQuery, setSearchQuery] = useState('인기');
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  console.log(searchQuery)
+  const [debouncedInputValue, setDebouncedInputValue] = useState(500);
   const fetchData = async () => {
     if (!searchQuery) return;
-
     setLoading(true);
     try {
       const response = await axios.get(
@@ -44,13 +43,22 @@ const News = () => {
     setLoading(false);
   };
 
-  useEffect(() => {
-    fetchData(); // 초기 렌더링 시에도 데이터를 가져오도록 호출
-  }, [searchQuery]);
-
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
   };
+
+  // useEffect(() => {
+  //   fetchData(); // 초기 렌더링 시에도 데이터를 가져오도록 호출
+  // }, [searchQuery]);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedInputValue(searchQuery);
+      fetchData();
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery, 500]);
+
+  
 
   const handleSearchClick = () => {
     fetchData(); // 검색 버튼 클릭 시 데이터를 가져오도록 호출
@@ -60,7 +68,7 @@ const News = () => {
     <NewsWrap>
       <div>
         <input
-          type="text"
+          type="text" 
           placeholder="검색어를 입력해주세요."
           value={searchQuery}
           onChange={handleInputChange}

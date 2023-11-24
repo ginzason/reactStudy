@@ -1,12 +1,18 @@
 import React from "react"
+import Board from "../components/Board"
 function Tag() {
   return (
     <>
       <div>
-        여긴 블로그의 테그를 모아서 보는 곳 입니다.
+        작은 게임하나 만들어 넣자
       </div>
-      <div>
-        <button>태그태그</button>
+      <div className="game">
+        <div className="game-board">
+          <Board />
+        </div>
+        <div className="game-info">
+
+        </div>
       </div>
     </>
   )

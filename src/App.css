@@ -39,3 +39,15 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+.game-info {
+  margin-left:20px;
+}
+ul, li{
+  list-style: none;
+}

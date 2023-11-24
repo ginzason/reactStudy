@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Navigator from './components/Navigator'
 import Footer from './components/Footer'
+import './App.css'
 
 const height = {
   height: '100dv'
