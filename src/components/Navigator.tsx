@@ -12,7 +12,7 @@ function Navigator() {
       link: '/news'
     },
     {
-      name: '태그',
+      name: '게임',
       link: '/tag'
     },
     {
