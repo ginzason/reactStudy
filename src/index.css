@@ -52,7 +52,14 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
+.game-board {
+  padding-top:30px;
+  margin: 0 auto;
+}
+.status {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
