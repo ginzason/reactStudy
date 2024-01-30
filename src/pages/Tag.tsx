@@ -51,7 +51,7 @@ function Tag() {
     const desc = move? 'Goto move #'+ move : 'Go to gamge Start';
     return (
       <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
+        <button className="move-button" onClick={() => jumpTo(move)}>{desc}</button>
       </li>
     );
   }) 
@@ -63,14 +63,14 @@ function Tag() {
   return (
     <>
       <div>
-        작은 게임하나 만들어 넣자
+        틱택톡 게임
       </div>
       <div className="game">
         <div className="game-board">
           <Board squares={current.squares} status={status} onClick={(i) => handleClick(i)}/>
         </div>
         <div className="game-info">
-          <ol>
+          <ol style={{listStyle:'none'}}>
             {moves}
           </ol>
         </div>
